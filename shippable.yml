@@ -1,0 +1,21 @@
+language: java
+
+jdk:
+   - oraclejdk7
+   - openjdk6
+   - openjdk7
+
+before_script: 
+  - pwd
+  - ls
+  - ls node_modules
+  - ls node_modules/ionic/bin
+
+script:
+  - ./build-shippable.sh
+
+after_success:
+   - mvn clean cobertura:cobertura
+   - mvn test
+notifications:
+  email: false
