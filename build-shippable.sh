@@ -7,6 +7,4 @@
 #export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 echo "Make sure you set AndroidManifest.xml android:debuggable to false!"
-mvn clean
-mvn build
 echo "done - save in /work"

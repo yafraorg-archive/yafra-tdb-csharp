@@ -1,21 +1,30 @@
-language: java
+# language setting
+language: python
 
-jdk:
-   - oraclejdk7
-   - openjdk6
-   - openjdk7
+# version numbers
+python:
+   - "3.3"
 
-before_script: 
+before_install:
+  - sudo apt-get update -qq
+  - sudo mkdir -p /work/yafra-runtime
+  - sudo git clone https://github.com/yafraorg/yafra.git
   - pwd
   - ls
-  - ls node_modules
-  - ls node_modules/ionic/bin
+
+install:
+  - sudo apt-get install -qq libstdc++6:i386 lib32z1 build-essential monodevelop doxygen
+#  - pip install -r requirements.txt
+
+before_script: 
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
 
 script:
-  - ./build-shippable.sh
+  - sudo ./build-shippable.sh
 
 after_success:
-   - mvn clean cobertura:cobertura
-   - mvn test
-notifications:
-  email: false
+   - echo $BUILD_NUMBER
+   - sudo tar cvf /work/yafra-tdb-csharp-build.tar .
+#   - sudo gzip /work/yafra-java-build.tar
+#   - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
