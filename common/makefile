@@ -10,7 +10,7 @@
 
 #--------------------------- declarations ----------------------
 RELEASE = $(YAFRAVER)$(YAFRAREL)
-PBASE = $(BASENODE)/org.yafra.tdb.csharp/common
+PBASE = $(BASENODE)/common
 PTESTS = $(PBASE)/testsuite
 POBJ = $(PBASE)/bin
 PBINR = $(POBJ)/Release

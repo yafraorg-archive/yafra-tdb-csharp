@@ -12,7 +12,7 @@
 VER_NAME = "travelDB tdbadmin"
 RELEASE = $(YAFRAVER)$(YAFRAREL)
 NAMESPACE = tdbadmin
-PBASE = $(BASENODE)/org.yafra.tdb.csharp
+PBASE = $(BASENODE)
 
 PADMIN = $(PBASE)/tdbadmin
 PBINA = $(PADMIN)/tdbadmin/bin

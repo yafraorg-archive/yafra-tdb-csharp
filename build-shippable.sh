@@ -6,7 +6,7 @@
 #export ANDROID_HOME=/work/adt/sdk
 #export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-echo "Make sure you set AndroidManifest.xml android:debuggable to false!"
+echo "Build mono project"
 
 echo "Make sure the environment is loaded!"
 
@@ -52,23 +52,6 @@ export OSHARED=1
 export ODEBUG=1
 
 #
-# section: travelDB
-#
-#travelDB
-export TDB=$BASENODE/org.yafra.tdb.classic
-export TDBCS=$BASENODE
-export TDBSETUP=$BASENODE/org.yafra.tdb.setup
-export TDBO=$WORKNODE/obj/tdb
-
-#set which database to use
-export TDBMYSQL=1
-#export TDBMSSQL=1
-#export TDBORACLE=1
-#export TDBORACLECLASSIC=1
-#export TDBODBC=1
-
-
-#
 # make sure the generic profile is loaded and you have enough permissions!!
 #
 if [ ! -d $SYSADM/defaults ]
@@ -80,12 +63,11 @@ fi
 #
 # create dirs
 #
+echo "Creating directories now\n"
 mkdir -p $WORKNODE
 mkdir -p $YAFRADOC
 mkdir -p $YAFRAMAN
 mkdir -p $YAFRAEXE
-mkdir -p $YAFRALIBPATH
-mkdir -p $YAFRALIBSO
 test -d $TDBO || mkdir -p $TDBO
 test -d $WORKNODE/apps || mkdir $WORKNODE/apps
 test -d $WORKNODE/yafra-dist || mkdir $WORKNODE/yafra-dist
@@ -100,17 +82,31 @@ echo "-> build number $YAFRABUILD"
 #
 
 #MONO/.NET / TDB
-cd $BASENODE/org.yafra.tdb.csharp/common
+echo "Start build mono now\n"
+cd $BASENODE/common
 make all
-cd $BASENODE/org.yafra.tdb.csharp/tdbadmin
+if [ $? -eq 0 ]
+then
+  echo "Successfully build library"
+else
+ echo "Error during build of library" >&2
+ exit 1
+fi
+cd $BASENODE/tdbadmin
 make all
-
+if [ $? -eq 0 ]
+then
+ echo "Successfully build GUI"
+else
+ echo "Error during build of GUI" >&2
+ exit 1
+fi
 # run some tests
 echo "\nRun some tests\n\n"
 echo "============================================================"
 echo " TEST CASE TDB 3: tdb .net/mono csharp test - reading db"
 echo "============================================================"
-mono $WORKNODE/apps/tdbmono/tdbtest.exe tdbadmin $DBSERVER MySQL
+mono $WORKNODE/apps/tdbmono/tdbtest.exe tdbadmin localhost MySQL
 
 
 echo "done - save in /work"
