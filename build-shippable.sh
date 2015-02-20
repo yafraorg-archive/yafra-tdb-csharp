@@ -86,11 +86,7 @@ mkdir -p $YAFRAMAN
 mkdir -p $YAFRAEXE
 mkdir -p $YAFRALIBPATH
 mkdir -p $YAFRALIBSO
-test -d $TDBO || mkdir $TDBO
-test -d $CMDSRVO || mkdir $CMDSRVO
-test -d $PSWHATO || mkdir $PSWHATO
-test -d $PSEDITO || mkdir $PSEDITO
-test -d $TESTSUITEO || mkdir $TESTSUITEO
+test -d $TDBO || mkdir -p $TDBO
 test -d $WORKNODE/apps || mkdir $WORKNODE/apps
 test -d $WORKNODE/yafra-dist || mkdir $WORKNODE/yafra-dist
 
