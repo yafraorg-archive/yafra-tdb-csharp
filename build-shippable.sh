@@ -20,7 +20,7 @@ export YAFRAPATCH=$YAFRABUILD
 #
 # setup general paths
 #
-export BASENODE=/home/shippable/workspace/src/github.com/yafraorg/yafra-tdb-c
+export BASENODE=/home/shippable/workspace/src/github.com/yafraorg/yafra-tdb-csharp
 export WORKNODE=/work/yafra-runtime
 export SYSADM=/work/repos/yafra/org.yafra.sysadm
 export YAFRATOOLS=$SYSADM/defaults
@@ -45,17 +45,6 @@ export PS_HOSTNAME=`$YAFRABIN/getserver`
 export HARDWARE=$PS_HW
 
 #
-# setup include/lib path
-#
-export YAFRAINC=$BASENODE/org.yafra.clibs/include
-export YAFRALIBS=$BASENODE/org.yafra.clibs/libs
-export YAFRALIBPATH=$WORKNODE/libs
-export INCX11=`$YAFRABIN/getx11inc`
-export INCMOTIF=`$YAFRABIN/getmotifinc`
-export LIBX11=`$YAFRABIN/getx11lib`
-export LIBMOTIF=`$YAFRABIN/getmotiflib`
-
-#
 # setup control flags
 #
 export OMANUAL=
@@ -63,35 +52,12 @@ export OSHARED=1
 export ODEBUG=1
 
 #
-# setup foundation LIBS
-#
-export PSSYSLIB=$YAFRALIBS/pssys
-export PSMUMELIB=$YAFRALIBS/psmume
-export PSIPCLIB=$YAFRALIBS/psipc
-export PSSERCOMLIB=$YAFRALIBS/pssercom
-export PSGUILIB=$YAFRALIBS/psgui
-export PSMATRIXLIB=$YAFRALIBS/matrix
-export PSMODULLIB=$YAFRALIBS/psmodul
-
-export YAFRALIBSO=$WORKNODE/obj/libs
-export PSSYSLIBO=$YAFRALIBSO
-export PSIPCLIBO=$YAFRALIBSO
-export PSMUMELIBO=$YAFRALIBSO
-export PSSERCOMLIBO=$YAFRALIBSO
-export PSMODULLIBO=$YAFRALIBSO
-export PSGUILIBO=$YAFRALIBSO
-export PSMATRIXLIBO=$YAFRALIBSO
-
-#
 # section: travelDB
 #
 #travelDB
 export TDB=$BASENODE/org.yafra.tdb.classic
-export TDBCS=$TDB/csharp
-export TDBS=$TDB
-export TDBI=$MAPOS/include
+export TDBCS=$BASENODE
 export TDBSETUP=$BASENODE/org.yafra.tdb.setup
-export TDBDB=$TDBSETUP/db
 export TDBO=$WORKNODE/obj/tdb
 
 #set which database to use
@@ -100,23 +66,6 @@ export TDBMYSQL=1
 #export TDBORACLE=1
 #export TDBORACLECLASSIC=1
 #export TDBODBC=1
-
-#
-# add on's
-#
-export YAFRAADDONS=$BASENODE
-export CMDSRV=$BASENODE/org.yafra.tdb.addons.cmdsrv
-export PSWHAT=$BASENODE/org.yafra.tdb.addons.pswhat
-export PSEDIT=$BASENODE/org.yafra.tdb.addons.psedit
-export CMDSRVO=$WORKNODE/obj/addons
-export PSWHATO=$WORKNODE/obj/addons
-export PSEDITO=$WORKNODE/obj/addons
-export TESTSUITEO=$WORKNODE/obj/testsuite
-
-#
-# depreciated
-#
-export MPDBMYSQL=$TDBMYSQL
 
 
 #
