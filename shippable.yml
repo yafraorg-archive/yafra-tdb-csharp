@@ -5,12 +5,24 @@ language: python
 python:
    - "3.3"
 
+env:
+  global:
+    - YAFRABUILD=$BUILD_NUMBER
+
 before_install:
   - sudo apt-get update -qq
+  - sudo sh -c 'echo "[mysqld]" > /etc/mysql/conf.d/yafra.cnf'
+  - sudo sh -c 'echo "lower_case_table_names=1" >> /etc/mysql/conf.d/yafra.cnf'
+  - sudo mysqladmin shutdown
+  - sudo su -c "/usr/bin/mysqld_safe > /dev/null 2>&1 &"
   - sudo mkdir -p /work/yafra-runtime
+  - sudo mkdir -p /work/repos
+  - cd /work/repos
   - sudo git clone https://github.com/yafraorg/yafra.git
+  - sudo git clone https://github.com/yafraorg/yafra-database.git
   - pwd
   - ls
+  - cd -
 
 install:
   - sudo apt-get install -qq libstdc++6:i386 lib32z1 build-essential monodevelop doxygen
@@ -19,12 +31,16 @@ install:
 before_script: 
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
+  - sudo -E /work/repos/yafra-database/build-db.sh mysql
 
 script:
-  - sudo ./build-shippable.sh
+  - sudo -E ./build-shippable.sh
 
 after_success:
    - echo $BUILD_NUMBER
-   - sudo tar cvf /work/yafra-tdb-csharp-build.tar .
-#   - sudo gzip /work/yafra-java-build.tar
-#   - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
+   - sudo rm -rf /work/yafra-runtime/obj
+   - sudo tar cvf /work/yafra-tdb-csharp-build.tar /work/yafra-runtime
+   - sudo -E cp /work/yafra-tdb-csharp-build.tar /work/yafra-tdb-csharp-build-$BUILD_NUMBER.tar
+   - sudo gzip /work/yafra-tdb-csharp-build*.tar
+   - sudo curl -T /work/yafra-tdb-csharp-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
+   - sudo curl -T /work/yafra-tdb-csharp-build-$BUILD_NUMBER.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
