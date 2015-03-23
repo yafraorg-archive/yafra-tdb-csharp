@@ -6,26 +6,76 @@
 #export ANDROID_HOME=/work/adt/sdk
 #export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-echo "JAVA / Maven build starting"
+echo "Mono/.Net build starting"
 
-# maven build - build all and run some extras afterwards
-mvn install
-# yafra java core
-#cd org.yafra.server.core/target
-#cp *.jar $WORKNODE/apps
-# yafra java J2EE wicket and cxf
-#cd ../../org.yafra.server.jee/target
-#cp *.war $WORKNODE/apps
-#cp *.jar $WORKNODE/bin
-# yafra java EJB3
-#cd $BASENODE/org.yafra.server.ejb/target
-#cp *client.jar $WORKNODE/apps
-#cd $BASENODE/org.yafra.server.ejb-war/target
-#cp *.war $WORKNODE/apps
 
-#rcp
-cd org.yafra.rcpbuild
-./build-rcp.sh
+#
+# set current version info
+#
+export YAFRAVER="1"
+export YAFRAREL="0"
+export YAFRAPATCH=$BUILD_NUMBER
+
+source ./run-environment.sh
+
+#
+#
+# make sure the generic profile is loaded and you have enough permissions!!
+#
+if [ ! -d $SYSADM/defaults ]
+then
+	echo "Environment not loaded - install first !"
+	exit
+fi
+
+
+#
+# create dirs
+#
+echo "Creating directories now\n"
+mkdir -p $WORKNODE
+mkdir -p $YAFRADOC
+mkdir -p $YAFRAMAN
+mkdir -p $YAFRAEXE
+test -d $TDBO || mkdir -p $TDBO
+test -d $WORKNODE/apps || mkdir $WORKNODE/apps
+test -d $WORKNODE/yafra-dist || mkdir $WORKNODE/yafra-dist
+
+#
+# setup some variables
+#
+TIMESTAMP="$(date +%y%m%d)"
+VERREL="$YAFRAVER.$YAFRAREL-$YAFRABUILD"
+echo "-> settings for release $VERREL with basenode $BASENODE on $TIMESTAMP"
+echo "-> build number $YAFRABUILD"
+#
+
+#MONO/.NET / TDB
+echo "Start build mono now\n"
+cd $BASENODE/common
+make all
+if [ $? -eq 0 ]
+then
+  echo "Successfully build library"
+else
+ echo "Error during build of library" >&2
+ exit 1
+fi
+cd $BASENODE/tdbadmin
+make all
+if [ $? -eq 0 ]
+then
+ echo "Successfully build GUI"
+else
+ echo "Error during build of GUI" >&2
+ exit 1
+fi
+# run some tests
+echo "\nRun some tests\n\n"
+echo "============================================================"
+echo " TEST CASE TDB 3: tdb .net/mono csharp test - reading db"
+echo "============================================================"
+mono $WORKNODE/apps/tdbmono/tdbtest.exe tdbadmin localhost MySQL
 
 
 echo "done - save in /work"

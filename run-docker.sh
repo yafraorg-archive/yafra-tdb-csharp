@@ -12,4 +12,7 @@ curl -O http://www.yafra.org/build/yafra-tdb-csharp-build.tar.gz
 tar xvfz yafra-tdb-csharp-build.tar.gz
 cd $WORKNODE
 
+cd apps/tdbmono
+mono tdbtest.exe tdbadmin $DB_PORT_3306_TCP_ADDR MySQL
+
 echo "done - running now under tomcat"
