@@ -20,7 +20,7 @@ export YAFRAPATCH=$YAFRABUILD
 #
 # setup general paths
 #
-export BASENODE=/home/shippable/workspace/src/github.com/yafraorg/yafra-tdb-csharp
+export BASENODE=/home/shippable/workspace/src/github.com/yafra-tdb-csharp
 export WORKNODE=/work/yafra-runtime
 export SYSADM=/work/repos/yafra/org.yafra.sysadm
 export YAFRATOOLS=$SYSADM/defaults
@@ -28,7 +28,7 @@ export YAFRABIN=$SYSADM/defaults/scripts
 export YAFRADOC=$WORKNODE/doc
 export YAFRAMAN=$WORKNODE/man
 export YAFRAEXE=$WORKNODE/bin
-    
+
 export PATH=$PATH:$YAFRABIN:$YAFRAEXE
 
 
