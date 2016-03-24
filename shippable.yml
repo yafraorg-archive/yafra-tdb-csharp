@@ -5,9 +5,14 @@ language: python
 python:
    - "3.3"
 
+# secure variables BINTRAYAPI, YAFRAFTPPWD
 env:
   global:
     - YAFRABUILD=$BUILD_NUMBER
+    # YAFRAFTPPWD
+    - secure: R5TBj9J+JHZez0Cm2BBTFJxptKrMhTJpMpUg73BbmusOvayvB+dqHEepDf2dFgIFMQcq5bsfMO3hIfwXju/yxaTAeI5/etOY5AGisHoLbMbTuW+qeup7VAspg13egfHD/6bSDLJ+lNCSIroEzR0E5pMG4GHE+0j/CQRgitKbGtlvU38nDlWDiSlowqG+88KKC6/XZAYG2FsAcUlQ8euDS9fxxHfp0plIIO0CrLgWOSBiGxzVOLto3FzMR4RUFAl7SknpuzD+2qowZxyagrOS5kghQH1ljbBrlMqCfUYxc/Q95JrrQhIDFSEj5uGe731FFpdFIXuxaMjU3lPjSNuVSw==
+    # BINTRAYAPI
+    - secure: axv3orSXcIu4dauYO8tMdWtvFj6BL3t1W+NERqiMtmkNaV8ATu1GPKC2k5m9IRe1OpTMbWAygSRwmDYjmwoZPK21E+NTLgT0uOqrvtrsSwf17YP0OV/g+dZDyjozr2S8Wm6j4f2Bria9NBUlSbmXoWgf5B9nWkTAuldD58WFE3AMmeaG7D2dR4SoaZUY90r3r4vJyo/qfqJ/1B2jt8hoq33xz+vcWRZ2Tokt+xlPhJn1H4uh0UbgVVB9TFlxSBFenLKTHQjbwkB/6H/LSshTaBWvxjgVLvAXgUbxSBeDnZexYcvTxiuh1ihIAJtJ4xKuY6HOLh9XRZ6X4VhgFUgt2Q==
 
 before_install:
   - sudo apt-get update -qq
@@ -37,10 +42,11 @@ script:
   - sudo -E ./build-shippable.sh
 
 after_success:
-   - echo $BUILD_NUMBER
-   - sudo rm -rf /work/yafra-runtime/obj
-   - sudo tar cvf /work/yafra-tdb-csharp-build.tar /work/yafra-runtime
-   - sudo -E cp /work/yafra-tdb-csharp-build.tar /work/yafra-tdb-csharp-build-$BUILD_NUMBER.tar
-   - sudo gzip /work/yafra-tdb-csharp-build*.tar
-   - sudo curl -T /work/yafra-tdb-csharp-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
-   - sudo curl -T /work/yafra-tdb-csharp-build-$BUILD_NUMBER.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
+  - pwd
+  - echo $BUILD_NUMBER
+  - sudo rm -rf /work/yafra-runtime/obj
+  - sudo tar cvf /work/yafra-tdb-csharp-build.tar /work/yafra-runtime
+  - sudo -E cp /work/yafra-tdb-csharp-build.tar /work/yafra-tdb-csharp-build-$BUILD_NUMBER.tar
+  - sudo gzip /work/yafra-tdb-csharp-build*.tar
+  - sudo curl -T /work/yafra-tdb-csharp-build-$BUILD_NUMBER.tar.gz -u yafraorg:$BINTRAYAPI https://api.bintray.com/content/yafraorg/yafra-distribution/yafra-tdb-csharp/v1.0/
+  - sudo curl -T /work/yafra-tdb-csharp-build.tar.gz -u yafrarel@yafra.org:$YAFRAFTPPWD ftp://ftp.yafra.org/
