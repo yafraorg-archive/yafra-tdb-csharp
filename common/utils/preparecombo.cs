@@ -6,9 +6,9 @@ namespace org.swyn.foundation.utils
 	/// <summary>
 	/// Only static methods to provide some useful tools, fill a datatable to bind to a combox with id and desc.
 	/// </summary>
-	abstract public class preparecombo
+	abstract public class Preparecombo
 	{
-		static public void setcombodata(string [,] Asel, int Arows, DataTable Adt)
+		static public void Setcombodata(string [,] Asel, int Arows, DataTable Adt)
 		{
 			int i;
 

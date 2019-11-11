@@ -8,7 +8,7 @@ namespace org.swyn.foundation.testsuite
 	/// <summary>
 	/// Summary description for Class1.
 	/// </summary>
-	class TestsuiteClass
+	static class TestsuiteClass
 		{
 		/// <summary>
 		/// The main entry point for the application.
@@ -17,7 +17,7 @@ namespace org.swyn.foundation.testsuite
 		static void Main(string[] args)
 			{
 			// start testsuite here
-			log l = new log();
+			Log l = new Log();
 			l.Init(true, true);
 			l.Debug("Start foundation testsuite");
 			l.LogFile("Start foundation testsuite logfile");
@@ -32,10 +32,10 @@ namespace org.swyn.foundation.testsuite
             // Oracle 10g Express
             // testdb("Data Source=//vmora:1521/XE;user id=yafraadmin;password=yafra", "org.swyn.foundation.db.Oracle");
             // MySQL 5
-            testdb("Data Source=webdevelop;user id=tdbadmin;pwd=yafra", "org.swyn.foundation.db.MySQL");
+            Testdb("Data Source=webdevelop;user id=tdbadmin;pwd=yafra", "org.swyn.foundation.db.MySQL");
             }
 
-		private static void testdb(string conn, string provider)
+		private static void Testdb(string conn, string provider)
 			{
 			AdoHelper helper;
 			string sql;
@@ -48,9 +48,9 @@ namespace org.swyn.foundation.testsuite
 			sql = "Select * from tdbadmin.sprachen";
 			reader = helper.ExecuteReader(conn, CommandType.Text, sql);
 			while(reader.Read())
-				{
+			{
 				Console.WriteLine("Sprache ID:{0} Bezeichnung: {1}", reader.GetInt32(0), reader.GetString(3));
-				}
+			}
 			reader.Close();
 			}
 		}

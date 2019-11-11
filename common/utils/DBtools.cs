@@ -9,19 +9,19 @@ namespace org.swyn.foundation.utils
 	/// </summary>
 	public class DBtools
 	{
-		private AdoHelper dbhelper;
-		private string dbcon;
-		private IDbConnection con;
-		private IDbTransaction tran;
+		private AdoHelper _dbhelper;
+		private string _dbcon;
+		private IDbConnection _con;
+		private IDbTransaction _tran;
 
 		public DBtools(AdoHelper Ahlp, string Adbcon)
 		{
 			//
 			// TODO: Add constructor logic here
 			//
-			dbhelper = Ahlp;
-			dbcon = Adbcon;
-			con = dbhelper.GetConnection(dbcon);
+			_dbhelper = Ahlp;
+			_dbcon = Adbcon;
+			_con = _dbhelper.GetConnection(_dbcon);
 
 			// begin transaction here
 		}
@@ -38,11 +38,11 @@ namespace org.swyn.foundation.utils
 		{
 			// tran.Rollback();
 		}
-		public int NewID(string Atable, string Aidname)
+		public int NewId(string Atable, string Aidname)
 		{
 			string sql;
 			sql = String.Format("select MAX({0}) from tdbadmin.{1}", Aidname, Atable);
-			int newid = (int)dbhelper.ExecuteScalar(dbcon, CommandType.Text, sql);
+			int newid = (int)_dbhelper.ExecuteScalar(_dbcon, CommandType.Text, sql);
 			if (newid < 0)
 				newid = 0;
 			newid++;
@@ -50,19 +50,19 @@ namespace org.swyn.foundation.utils
 		}
 		public int DBcmd(string Acmd)
 		{
-			int affrows = (int)dbhelper.ExecuteNonQuery(dbcon, CommandType.Text, Acmd);
+			int affrows = (int)_dbhelper.ExecuteNonQuery(_dbcon, CommandType.Text, Acmd);
 			return affrows;
 		}
-		public void FillDS(DataSet Ads, string Asql, string[] Atabs)
+		public void FillDs(DataSet Ads, string Asql, string[] Atabs)
 		{
-			dbhelper.FillDataset(dbcon, CommandType.Text, Asql, Ads, Atabs );
+			_dbhelper.FillDataset(_dbcon, CommandType.Text, Asql, Ads, Atabs );
 		}
-		public void UpdDS(DataSet Ads, string Aicmd, string [] Aiarg, string Aucmd, string [] Auarg, string Adcmd, string [] Adarg, string Atabs)
+		public void UpdDs(DataSet Ads, string Aicmd, string [] Aiarg, string Aucmd, string [] Auarg, string Adcmd, string [] Adarg, string Atabs)
 		{
-			IDbCommand inscmd = dbhelper.CreateCommand(con, Aicmd, Aiarg);
-			IDbCommand updcmd = dbhelper.CreateCommand(con, Aucmd, Auarg);
-			IDbCommand delcmd = dbhelper.CreateCommand(con, Adcmd, Adarg);
-			dbhelper.UpdateDataset(inscmd, delcmd, updcmd, Ads, Atabs);
+			IDbCommand inscmd = _dbhelper.CreateCommand(_con, Aicmd, Aiarg);
+			IDbCommand updcmd = _dbhelper.CreateCommand(_con, Aucmd, Auarg);
+			IDbCommand delcmd = _dbhelper.CreateCommand(_con, Adcmd, Adarg);
+			_dbhelper.UpdateDataset(inscmd, delcmd, updcmd, Ads, Atabs);
 		}
 	}
 }

@@ -11,12 +11,12 @@ namespace org.swyn.foundation.db
 	/// The OleDb class is intended to encapsulate high performance, scalable best practices for 
 	/// common uses of the OleDb ADO.NET provider.  It is created using the abstract factory in AdoHelper
 	/// </summary>
-	public class MySQL : AdoHelper
+	public class MySql : AdoHelper
 	{
 		/// <summary>
 		/// Create an OleDb Helper.  Needs to be a default constructor so that the Factory can create it
 		/// </summary>
-		public MySQL()
+		public MySql()
 		{
 		}
 
@@ -28,7 +28,7 @@ namespace org.swyn.foundation.db
 		/// <returns>The array of OdbcParameters</returns>
 		protected override IDataParameter[] GetDataParameters(int size)
 		{
-			return new MySqlParameter[size];
+			return new IDataParameter[size];
 		}
 
 		/// <summary>

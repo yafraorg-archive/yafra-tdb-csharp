@@ -32,7 +32,7 @@ namespace org.swyn.foundation.db
 	/// <summary>
 	/// This class is for reading the 'daabProvider' section of the App.Config file
 	/// </summary>
-	public class DAABSectionHandler : 
+	public class DaabSectionHandler : 
 		IConfigurationSectionHandler
 	{
 		#region IConfigurationSectionHandler Members

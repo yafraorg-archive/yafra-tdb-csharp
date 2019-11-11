@@ -3732,7 +3732,7 @@ namespace org.swyn.foundation.db
 		public virtual IDataParameter[] GetSpParameterSet(IDbConnection connection, string spName, bool includeReturnValueParameter)
 		{
 			if( connection == null ) throw new ArgumentNullException( "connection" );
-			if( connection as ICloneable == null ) throw new ArgumentException( "can´t discover parameters if the connection doesn´t implement the ICloneable interface", "connection" );
+			if( connection as ICloneable == null ) throw new ArgumentException( "canï¿½t discover parameters if the connection doesnï¿½t implement the ICloneable interface", "connection" );
 			
 			IDbConnection clonedConnection = (IDbConnection)((ICloneable)connection).Clone();
 			return GetSpParameterSetInternal(clonedConnection, spName, includeReturnValueParameter);
@@ -3765,7 +3765,7 @@ namespace org.swyn.foundation.db
 				CacheParameterSet(connection,
 								spName + (includeReturnValueParameter ? ":include ReturnValue Parameter":""), spParameters);
 
-				cachedParameters = ADOHelperParameterCache.CloneParameters(spParameters);
+				cachedParameters = AdoHelperParameterCache.CloneParameters(spParameters);
 			}
         	
 			return cachedParameters;
@@ -3816,7 +3816,7 @@ namespace org.swyn.foundation.db
 				mustCloseConnection = true;
 			}
 
-			IDataParameter[] parameters = ADOHelperParameterCache.GetCachedParameterSet(connection.ConnectionString, commandText);
+			IDataParameter[] parameters = AdoHelperParameterCache.GetCachedParameterSet(connection.ConnectionString, commandText);
 
 			if (mustCloseConnection) 
 			{
@@ -3871,7 +3871,7 @@ namespace org.swyn.foundation.db
 		{
 			// this way we control the connection, and therefore the connection string that gets saved as a hask key
 			connection.Open();
-			ADOHelperParameterCache.CacheParameterSet(connection.ConnectionString, commandText, commandParameters);
+			AdoHelperParameterCache.CacheParameterSet(connection.ConnectionString, commandText, commandParameters);
 			connection.Close();
 		}
 		
@@ -3926,9 +3926,9 @@ namespace org.swyn.foundation.db
 	/// ADOHelperParameterCache provides functions to leverage a static cache of procedure parameters, and the
 	/// ability to discover parameters for stored procedures at run-time.
 	/// </summary>
-	public sealed class ADOHelperParameterCache
+	public sealed class AdoHelperParameterCache
 	{
-		private static Hashtable paramCache = Hashtable.Synchronized(new Hashtable());
+		private static Hashtable _paramCache = Hashtable.Synchronized(new Hashtable());
 
 		/// <summary>
 		/// Deep copy of cached IDataParameter array
@@ -3964,7 +3964,7 @@ namespace org.swyn.foundation.db
 
 			string hashKey = connectionString + ":" + commandText;
 
-			paramCache[hashKey] = commandParameters;
+			_paramCache[hashKey] = commandParameters;
 		}
 
 		/// <summary>
@@ -3982,7 +3982,7 @@ namespace org.swyn.foundation.db
 
 			string hashKey = connectionString + ":" + commandText;
 
-			IDataParameter[] cachedParameters = paramCache[hashKey] as IDataParameter[];
+			IDataParameter[] cachedParameters = _paramCache[hashKey] as IDataParameter[];
 			if (cachedParameters == null)
 			{			
 				return null;

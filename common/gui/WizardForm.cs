@@ -71,12 +71,12 @@ namespace org.swyn.foundation.gui
         /// <summary>
         /// Array of wizard pages.
         /// </summary>
-        private ArrayList m_pages = new ArrayList();
+        private ArrayList _pages = new ArrayList();
         
         /// <summary>
         /// Index of the selected page; -1 if no page selected.
         /// </summary>
-        private int m_selectedIndex = -1;
+        private int _selectedIndex = -1;
 
 
         // ==================================================================
@@ -218,25 +218,25 @@ namespace org.swyn.foundation.gui
         private void ActivatePage( int newIndex )
         {
             // Ensure the index is valid
-            if( newIndex < 0 || newIndex >= m_pages.Count )
+            if( newIndex < 0 || newIndex >= _pages.Count )
                 throw new ArgumentOutOfRangeException();
 
             // Deactivate the current page if applicable
             WizardPage currentPage = null;
-            if( m_selectedIndex != -1 )
+            if( _selectedIndex != -1 )
             {
-                currentPage = (WizardPage)m_pages[ m_selectedIndex ];
+                currentPage = (WizardPage)_pages[ _selectedIndex ];
                 if( !currentPage.OnKillActive() )
                     return;
             }
 
             // Activate the new page
-            WizardPage newPage = (WizardPage)m_pages[ newIndex ];
+            WizardPage newPage = (WizardPage)_pages[ newIndex ];
             if( !newPage.OnSetActive() )
                 return;
 
             // Update state
-            m_selectedIndex = newIndex;
+            _selectedIndex = newIndex;
             if( currentPage != null )
                 currentPage.Visible = false;
             newPage.Visible = true;
@@ -249,11 +249,11 @@ namespace org.swyn.foundation.gui
         private void OnClickBack( object sender, EventArgs e )
         {
             // Ensure a page is currently selected
-            if( m_selectedIndex != -1 )
+            if( _selectedIndex != -1 )
             {
                 // Inform selected page that the Back button was clicked
-                string pageName = ((WizardPage)m_pages[
-                    m_selectedIndex ]).OnWizardBack();
+                string pageName = ((WizardPage)_pages[
+                    _selectedIndex ]).OnWizardBack();
                 switch( pageName )
                 {
                     // Do nothing
@@ -262,16 +262,16 @@ namespace org.swyn.foundation.gui
                         
                     // Activate the next appropriate page
                     case NextPage:
-                        if( m_selectedIndex - 1 >= 0 )
-                            ActivatePage( m_selectedIndex - 1 );
+                        if( _selectedIndex - 1 >= 0 )
+                            ActivatePage( _selectedIndex - 1 );
                         break;
 
                     // Activate the specified page if it exists
                     default:
-                        foreach( WizardPage page in m_pages )
+                        foreach( WizardPage page in _pages )
                         {
                             if( page.Name == pageName )
-                                ActivatePage( m_pages.IndexOf( page ) );
+                                ActivatePage( _pages.IndexOf( page ) );
                         }
                         break;
                 }
@@ -293,10 +293,10 @@ namespace org.swyn.foundation.gui
         private void OnClickFinish( object sender, EventArgs e )
         {
             // Ensure a page is currently selected
-            if( m_selectedIndex != -1 )
+            if( _selectedIndex != -1 )
             {
                 // Inform selected page that the Finish button was clicked
-                WizardPage page = (WizardPage)m_pages[ m_selectedIndex ];
+                WizardPage page = (WizardPage)_pages[ _selectedIndex ];
                 if( page.OnWizardFinish() )
                 {
                     // Deactivate page and close wizard
@@ -312,11 +312,11 @@ namespace org.swyn.foundation.gui
         private void OnClickNext( object sender, EventArgs e )
         {
             // Ensure a page is currently selected
-            if( m_selectedIndex != -1 )
+            if( _selectedIndex != -1 )
             {
                 // Inform selected page that the Next button was clicked
-                string pageName = ((WizardPage)m_pages[
-                    m_selectedIndex ]).OnWizardNext();
+                string pageName = ((WizardPage)_pages[
+                    _selectedIndex ]).OnWizardNext();
                 switch( pageName )
                 {
                     // Do nothing
@@ -325,16 +325,16 @@ namespace org.swyn.foundation.gui
 
                     // Activate the next appropriate page
                     case NextPage:
-                        if( m_selectedIndex + 1 < m_pages.Count )
-                            ActivatePage( m_selectedIndex + 1 );
+                        if( _selectedIndex + 1 < _pages.Count )
+                            ActivatePage( _selectedIndex + 1 );
                         break;
 
                     // Activate the specified page if it exists
                     default:
-                        foreach( WizardPage page in m_pages )
+                        foreach( WizardPage page in _pages )
                         {
                             if( page.Name == pageName )
-                                ActivatePage( m_pages.IndexOf( page ) );
+                                ActivatePage( _pages.IndexOf( page ) );
                         }
                         break;
                 }
@@ -362,9 +362,9 @@ namespace org.swyn.foundation.gui
                 page.Visible = false;
                 page.Location = new Point( 0, 0 );
                 page.Size = new Size( Width, m_separator.Location.Y );
-                m_pages.Add( page );
-                if( m_selectedIndex == -1 )
-                    m_selectedIndex = 0;
+                _pages.Add( page );
+                if( _selectedIndex == -1 )
+                    _selectedIndex = 0;
             }
         }
 
@@ -377,7 +377,7 @@ namespace org.swyn.foundation.gui
             base.OnLoad( e );
             
             // Activate the first page in the wizard
-            if( m_pages.Count > 0 )
+            if( _pages.Count > 0 )
                 ActivatePage( 0 );
         }
 

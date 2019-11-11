@@ -131,8 +131,8 @@ namespace org.swyn.foundation.db
 		/// <returns>The size</returns> 
 		private int GetParameterSize(string name) 
 		{ 
-			int Size=255; 
-			return Size; 
+			int size=255; 
+			return size; 
 		} 
 		
 		/// <summary>
