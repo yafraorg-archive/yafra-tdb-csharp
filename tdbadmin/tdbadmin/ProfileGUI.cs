@@ -188,13 +188,13 @@ namespace tdbadmin
 			org.swyn.foundation.utils.DBtools db = new DBtools(tdb.User.Uhelper, tdb.User.Udbcon);
 			this.objProfileDS.Clear();
 			sql = String.Format("Select * from tdbadmin.mp_profil");
-			db.FillDS(this.objProfileDS, sql, new string[] { "mp_profil" });
+			db.FillDs(this.objProfileDS, sql, new string[] { "mp_profil" });
 		}
 
 		private void btnUpdate_Click(object sender, System.EventArgs e)
 		{
 			org.swyn.foundation.utils.DBtools db = new DBtools(tdb.User.Uhelper, tdb.User.Udbcon);
-			db.UpdDS(this.objProfileDS, "tdbadmin.tdb_insprof",
+			db.UpdDs(this.objProfileDS, "tdbadmin.tdb_insprof",
 				new string[] { "MPID", "MPUSER", "BCHST", "SECLEVEL", "S_ID", "LAND_ID", "DLTT_ID", "DLT_ID", "KAT_ID", "DLAT_ID", "DLNT_ID", "SAI_ID", "PRG_ID", "A_ZEIT", "E_ZEIT", "P_RANGE" },
 				"tdbadmin.tdb_updprof",
 				new string[] { "MPID", "MPUSER", "BCHST", "SECLEVEL", "S_ID", "LAND_ID", "DLTT_ID", "DLT_ID", "KAT_ID", "DLAT_ID", "DLNT_ID", "SAI_ID", "PRG_ID", "A_ZEIT", "E_ZEIT", "P_RANGE" },

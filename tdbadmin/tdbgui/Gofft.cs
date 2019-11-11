@@ -31,7 +31,7 @@ namespace tdbgui
 			string [] lstitm = new string [2];
 			Alv.Columns.RemoveAt(2);
 			OffertypeVsel workDS = new OffertypeVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_otsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_otsel" });
 			foreach (OffertypeVsel.tdbv_otselRow Rwork in workDS.tdbv_otsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.OT_ID);
@@ -47,7 +47,7 @@ namespace tdbgui
 			OffertypeVsel workDS = new OffertypeVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_otsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_otsel" });
 			foreach (OffertypeVsel.tdbv_otselRow Rwork in workDS.tdbv_otsel)
 			{
 				row = workDT.NewRow();

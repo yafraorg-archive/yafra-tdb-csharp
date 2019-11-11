@@ -36,7 +36,7 @@ namespace tdbgui
             Alv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 				Sel_dat});
             ServVsel workDS = new ServVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_servsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_servsel" });
             foreach (ServVsel.tdbv_servselRow Rwork in workDS.tdbv_servsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.SERV_ID);
@@ -54,7 +54,7 @@ namespace tdbgui
             ServVsel workDS = new ServVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_servsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_servsel" });
             foreach (ServVsel.tdbv_servselRow Rwork in workDS.tdbv_servsel)
 			{
 				row = workDT.NewRow();

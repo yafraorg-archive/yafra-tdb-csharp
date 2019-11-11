@@ -30,7 +30,7 @@ namespace tdbgui
 			string [] lstitm = new string [3];
 			// get the first suiteable title and return it
 			SeasonVsel workDS = new SeasonVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_saisel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_saisel" });
 			foreach (SeasonVsel.tdbv_saiselRow Rwork in workDS.tdbv_saisel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.SAI_ID);
@@ -49,7 +49,7 @@ namespace tdbgui
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
 
-			FillDS(workDS, selectionsql, new string[] { "tdbv_saisel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_saisel" });
 			foreach (SeasonVsel.tdbv_saiselRow Rwork in workDS.tdbv_saisel)
 			{
 				row = workDT.NewRow();

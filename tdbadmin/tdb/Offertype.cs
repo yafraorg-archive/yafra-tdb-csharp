@@ -32,7 +32,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new OffertypeV();
 			sql = String.Format("Select * from tdbadmin.tdbv_ot where ot_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_ot" });
+			FillDs(workDS, sql, new string[] { "tdbv_ot" });
 			Arows = workDS.tdbv_ot.Rows.Count;
 			OffertypeV.tdbv_otRow Rwork = workDS.tdbv_ot[0];
 
@@ -55,7 +55,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new OffertypeVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_otsel where custtype_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_otsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_otsel" });
 			OffertypeVsel.tdbv_otselRow Rwork = workDS.tdbv_otsel[0];
 			id = Rwork.OT_ID;
 			return(Rwork.BEZ);
@@ -70,7 +70,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new OffertypeVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_otsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_otsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_otsel" });
 			Arows = workDS.tdbv_otsel.Rows.Count;
 			string[,] result = new string[Arows, 2];
 			foreach (OffertypeVsel.tdbv_otselRow Rwork in workDS.tdbv_otsel)
@@ -96,7 +96,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("angebots_typ", "ART_ID");
+				id = NewId("angebots_typ", "ART_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

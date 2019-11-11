@@ -42,7 +42,7 @@ namespace tdb
 			// get the first suiteable title and return it
             ServV workDS = new ServV();
 			sql = String.Format("Select * from tdbadmin.tdbv_serv where serv_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_serv" });
+			FillDs(workDS, sql, new string[] { "tdbv_serv" });
 			Arows = workDS.tdbv_serv.Rows.Count;
 			ServV.tdbv_servRow Rwork = workDS.tdbv_serv[0];
 
@@ -70,7 +70,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new ServVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_servsel where serv_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_servsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_servsel" });
 			ServVsel.tdbv_servselRow Rwork = workDS.tdbv_servsel[0];
 			id = Rwork.SERV_ID;
 			return(Rwork.BEZ);
@@ -85,7 +85,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new ServVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_servsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_servsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_servsel" });
 			Arows = workDS.tdbv_servsel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (ServVsel.tdbv_servselRow Rwork in workDS.tdbv_servsel)
@@ -107,7 +107,7 @@ namespace tdb
 			text = Atext;
 			code = Acode;
             startdate = Astartdate;
-            udat = datetime.ToUnix(startdate);
+            udat = Datetime.ToUnix(startdate);
             actionid = Aactionid;
             seasonid = Aseasonid;
 
@@ -117,7 +117,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("dienstleistung", "DLG_ID");
+				id = NewId("dienstleistung", "DLG_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

@@ -31,7 +31,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new GrpTypV();
 			sql = String.Format("Select * from tdbadmin.tdbv_grpt where grptype_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_grpt" });
+			FillDs(workDS, sql, new string[] { "tdbv_grpt" });
 			Arows = workDS.tdbv_grpt.Rows.Count;
 			GrpTypV.tdbv_grptRow Rwork = workDS.tdbv_grpt[0];
 
@@ -54,7 +54,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new GrpTypVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_grptsel where grptype_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_grptsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_grptsel" });
 			GrpTypVsel.tdbv_grptselRow Rwork = workDS.tdbv_grptsel[0];
 			id = Rwork.GRPTYPE_ID;
 			return(Rwork.BEZ);
@@ -69,7 +69,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new GrpTypVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_grptsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_grptsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_grptsel" });
 			Arows = workDS.tdbv_grptsel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (GrpTypVsel.tdbv_grptselRow Rwork in workDS.tdbv_grptsel)
@@ -97,7 +97,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("kollektiv_typ", "K_TYP_ID");
+				id = NewId("kollektiv_typ", "K_TYP_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

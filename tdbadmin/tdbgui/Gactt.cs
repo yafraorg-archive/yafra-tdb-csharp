@@ -30,7 +30,7 @@ namespace tdbgui
 		{
 			string [] lstitm = new string [3];
 			ActtypeVsel workDS = new ActtypeVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_acttsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_acttsel" });
 			foreach (ActtypeVsel.tdbv_acttselRow Rwork in workDS.tdbv_acttsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.ACTTYPE_ID);
@@ -47,7 +47,7 @@ namespace tdbgui
 			ActtypeVsel workDS = new ActtypeVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_acttsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_acttsel" });
 			foreach (ActtypeVsel.tdbv_acttselRow Rwork in workDS.tdbv_acttsel)
 			{
 				row = workDT.NewRow();

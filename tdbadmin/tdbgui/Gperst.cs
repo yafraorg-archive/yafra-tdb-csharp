@@ -32,7 +32,7 @@ namespace tdbgui
 		{
 			string [] lstitm = new string [3];
 			PersTypVsel workDS = new PersTypVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_perstsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_perstsel" });
 			foreach (PersTypVsel.tdbv_perstselRow Rwork in workDS.tdbv_perstsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.PERSTYPE_ID);
@@ -49,7 +49,7 @@ namespace tdbgui
 			PersTypVsel workDS = new PersTypVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_perstsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_perstsel" });
 			foreach (PersTypVsel.tdbv_perstselRow Rwork in workDS.tdbv_perstsel)
 			{
 				row = workDT.NewRow();

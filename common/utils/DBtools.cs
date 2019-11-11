@@ -42,11 +42,11 @@ namespace org.swyn.foundation.utils
 		{
 			string sql;
 			sql = String.Format("select MAX({0}) from tdbadmin.{1}", Aidname, Atable);
-			int newid = (int)_dbhelper.ExecuteScalar(_dbcon, CommandType.Text, sql);
-			if (newid < 0)
-				newid = 0;
-			newid++;
-			return newid;
+			int NewId = (int)_dbhelper.ExecuteScalar(_dbcon, CommandType.Text, sql);
+			if (NewId < 0)
+				NewId = 0;
+			NewId++;
+			return NewId;
 		}
 		public int DBcmd(string Acmd)
 		{

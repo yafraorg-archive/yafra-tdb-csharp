@@ -45,7 +45,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new ArrV();
 			sql = String.Format("Select * from tdbadmin.tdbv_arr where arr_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_arr" });
+			FillDs(workDS, sql, new string[] { "tdbv_arr" });
 			Arows = workDS.tdbv_arr.Rows.Count;
 			ArrV.tdbv_arrRow Rwork = workDS.tdbv_arr[0];
 
@@ -73,7 +73,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new ArrVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_arrsel where arr_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_arrsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_arrsel" });
 			ArrVsel.tdbv_arrselRow Rwork = workDS.tdbv_arrsel[0];
 			id = Rwork.ARR_ID;
 			return(Rwork.BEZ);
@@ -88,7 +88,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new ArrVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_arrsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_arrsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_arrsel" });
 			Arows = workDS.tdbv_arrsel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (ArrVsel.tdbv_arrselRow Rwork in workDS.tdbv_arrsel)
@@ -124,7 +124,7 @@ namespace tdb
 				return;
 			}
 			sai_id = P.ObjSaiid;
-			udat = datetime.ToUnix(Adat);
+			udat = Datetime.ToUnix(Adat);
 
 			// Begin Trx
 			BeginTrx();
@@ -132,7 +132,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("arrangement", "ARR_ID");
+				id = NewId("arrangement", "ARR_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

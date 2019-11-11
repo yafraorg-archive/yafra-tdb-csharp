@@ -31,7 +31,7 @@ namespace tdbgui
 			string sql;
 			DltV workDS = new DltV();
 			sql = String.Format("Select * from tdbadmin.tdbv_dlt where s_id = {0} and h_dlt_id < 1 order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_dlt" });
+			FillDs(workDS, sql, new string[] { "tdbv_dlt" });
             foreach (DltV.tdbv_dltRow Rwork in workDS.tdbv_dlt)
 			{
 				TreeNode RootNode = new TreeNode(Rwork.BEZ);
@@ -48,7 +48,7 @@ namespace tdbgui
 
 			// get the first suiteable title and return it
 			workDS = new DltVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_dltsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_dltsel" });
 			foreach (DltVsel.tdbv_dltselRow Rwork in workDS.tdbv_dltsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.DLT_ID);
@@ -68,7 +68,7 @@ namespace tdbgui
 			workDT.Columns.Add("desc");
 
 			workDS = new DltVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_dltsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_dltsel" });
 			foreach (DltVsel.tdbv_dltselRow Rwork in workDS.tdbv_dltsel)
 			{
 				row = workDT.NewRow();
@@ -96,7 +96,7 @@ namespace tdbgui
 			int rows;
 			DltV workDS = new DltV();
 			sql = String.Format("Select * from tdbadmin.tdbv_dlt where s_id = {0} and h_dlt_id = {1} order by bez", tdb.User.Ulangid, Aparentid);
-			FillDS(workDS, sql, new string[] { "tdbv_dlt" });
+			FillDs(workDS, sql, new string[] { "tdbv_dlt" });
 			rows = workDS.tdbv_dlt.Rows.Count;
 			if (rows < 1)
 				return;

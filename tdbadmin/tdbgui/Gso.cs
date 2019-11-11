@@ -36,7 +36,7 @@ namespace tdbgui
             Alv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 				Sel_dat});
             SoVsel workDS = new SoVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_sosel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_sosel" });
             foreach (SoVsel.tdbv_soselRow Rwork in workDS.tdbv_sosel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.SO_ID);
@@ -54,7 +54,7 @@ namespace tdbgui
             SoVsel workDS = new SoVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_sosel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_sosel" });
             foreach (SoVsel.tdbv_soselRow Rwork in workDS.tdbv_sosel)
 			{
 				row = workDT.NewRow();

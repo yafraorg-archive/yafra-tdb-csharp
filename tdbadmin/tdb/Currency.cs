@@ -34,7 +34,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CurV();
 			sql = String.Format("Select * from tdbadmin.tdbv_cur where whr_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_cur" });
+			FillDs(workDS, sql, new string[] { "tdbv_cur" });
 			Arows = workDS.tdbv_cur.Rows.Count;
 			CurV.tdbv_curRow Rwork = workDS.tdbv_cur[0];
 
@@ -58,7 +58,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CurVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_cursel where whr_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_cursel" });
+			FillDs(workDS, sql, new string[] { "tdbv_cursel" });
 			CurVsel.tdbv_curselRow Rwork = workDS.tdbv_cursel[0];
 			id = Rwork.WHR_ID;
 			return(Rwork.BEZ);
@@ -73,7 +73,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CurVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_cursel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_cursel" });
+			FillDs(workDS, sql, new string[] { "tdbv_cursel" });
 			Arows = workDS.tdbv_cursel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (CurVsel.tdbv_curselRow Rwork in workDS.tdbv_cursel)
@@ -103,7 +103,7 @@ namespace tdb
 			{
 
 				// first get a new unique ID for bez and then sai
-				id = NewID("waehrung", "WHR_ID");
+				id = NewId("waehrung", "WHR_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert object

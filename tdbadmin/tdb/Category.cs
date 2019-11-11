@@ -41,7 +41,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CatV();
 			sql = String.Format("Select * from tdbadmin.tdbv_cat where cat_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_cat" });
+			FillDs(workDS, sql, new string[] { "tdbv_cat" });
 			Arows = workDS.tdbv_cat.Rows.Count;
 			CatV.tdbv_catRow Rwork = workDS.tdbv_cat[0];
 
@@ -67,7 +67,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CatVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_catsel where cat_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_catsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_catsel" });
 			CatVsel.tdbv_catselRow Rwork = workDS.tdbv_catsel[0];
 			id = Rwork.CAT_ID;
 			return(Rwork.BEZ);
@@ -82,7 +82,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CatVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_catsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_catsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_catsel" });
 			Arows = workDS.tdbv_catsel.Rows.Count;
 			string[,] result = new string[Arows, 2];
 			foreach (CatVsel.tdbv_catselRow Rwork in workDS.tdbv_catsel)
@@ -115,7 +115,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then cat
-				id = NewID("kategorie", "KAT_ID");
+				id = NewId("kategorie", "KAT_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

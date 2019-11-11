@@ -56,7 +56,7 @@ namespace tdb
 			// load profile from DB by user name
 			prof = new ProfileDS();
 			sql = String.Format("Select * from tdbadmin.mp_profil where mpuser like '{0}'", Auser);
-			dbt.FillDS(prof, sql, new string[] { "mp_profil" });
+			dbt.FillDs(prof, sql, new string[] { "mp_profil" });
 			ProfileDS.mp_profilRow Rprof = prof.mp_profil[0];
 
 			// set now the user profile data

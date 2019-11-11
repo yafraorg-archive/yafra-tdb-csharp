@@ -66,7 +66,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CustV();
 			sql = String.Format("Select * from tdbadmin.tdbv_cust where pers_id = {0}", Aid);
-			FillDS(workDS, sql, new string[] { "tdbv_cust" });
+			FillDs(workDS, sql, new string[] { "tdbv_cust" });
 			Arows = workDS.tdbv_cust.Rows.Count;
 			CustV.tdbv_custRow Rwork = workDS.tdbv_cust[0];
 
@@ -102,7 +102,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CustVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_custsel where pers_id = {0}", Aid);
-			FillDS(workDS, sql, new string[] { "tdbv_custsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_custsel" });
 			CustVsel.tdbv_custselRow Rwork = workDS.tdbv_custsel[0];
 			id = Rwork.PERS_ID;
 			return(Rwork.NAME);
@@ -117,7 +117,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CustVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_custsel order by name");
-			FillDS(workDS, sql, new string[] { "tdbv_custsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_custsel" });
 			Arows = workDS.tdbv_custsel.Rows.Count;
 			string[,] result = new string[Arows, 2];
 			foreach (CustVsel.tdbv_custselRow Rwork in workDS.tdbv_custsel)
@@ -161,7 +161,7 @@ namespace tdb
 			{
 
 				// first get a new unique ID for bez and then sai
-				id = NewID("personen", "PERS_ID");
+				id = NewId("personen", "PERS_ID");
 				rowsaffected = InsText();
 				// insert sai
 				sql = String.Format("insert into tdbadmin.personen values({0}, {1}, '{2}', {3}, {4}, {5})", id, perstyp, code, langid, staid, text_id);

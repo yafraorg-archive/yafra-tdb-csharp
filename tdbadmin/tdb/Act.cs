@@ -52,14 +52,14 @@ namespace tdb
 			// get the first suiteable title and return it
 			ActV workDS = new ActV();
 			sql = String.Format("Select * from tdbadmin.tdbv_act where act_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_act" });
+			FillDs(workDS, sql, new string[] { "tdbv_act" });
 			Arows = workDS.tdbv_act.Rows.Count;
 			ActV.tdbv_actRow Rwork = workDS.tdbv_act[0];
 
 			// get the first suiteable title and return it
 			ActGrp work2 = new ActGrp();
 			sql = String.Format("Select * from tdbadmin.aktionsgrp where childakt = {0}", Aid);
-			FillDS(work2, sql, new string[] { "aktionsgrp" });
+			FillDs(work2, sql, new string[] { "aktionsgrp" });
 			rows = work2.aktionsgrp.Rows.Count;
 			ActGrp.aktionsgrpRow Rwork2 = work2.aktionsgrp[0];
 
@@ -90,7 +90,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new ActVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_actsel where act_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_actsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_actsel" });
 			ActVsel.tdbv_actselRow Rwork = workDS.tdbv_actsel[0];
 			id = Rwork.ACT_ID;
 			return(Rwork.BEZ);
@@ -105,7 +105,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new ActVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_actsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_actsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_actsel" });
 			Arows = workDS.tdbv_actsel.Rows.Count;
 			string[,] result = new string[Arows, 2];
 			foreach (ActVsel.tdbv_actselRow Rwork in workDS.tdbv_actsel)
@@ -136,7 +136,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("aktionen", "AKT_ID");
+				id = NewId("aktionen", "AKT_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

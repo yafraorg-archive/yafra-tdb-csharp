@@ -40,7 +40,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new StatusV();
 			sql = String.Format("Select * from tdbadmin.tdbv_sta where sta_id = {0} and s_id = {1} and typ = {2}", Aid, tdb.User.Ulangid, status_typ);
-			FillDS(workDS, sql, new string[] { "tdbv_sta" });
+			FillDs(workDS, sql, new string[] { "tdbv_sta" });
 			Arows = workDS.tdbv_sta.Rows.Count;
 			StatusV.tdbv_staRow Rwork = workDS.tdbv_sta[0];
 
@@ -61,7 +61,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new StatusVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_stasel where sta_id = {0} and s_id = {1} and typ = {2}", Aid, tdb.User.Ulangid, status_typ);
-			FillDS(workDS, sql, new string[] { "tdbv_stasel" });
+			FillDs(workDS, sql, new string[] { "tdbv_stasel" });
 			StatusVsel.tdbv_staselRow Rwork = workDS.tdbv_stasel[0];
 			id = Rwork.STA_ID;
 			return(Rwork.BEZ);
@@ -76,7 +76,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new StatusVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_stasel where s_id = {0} and typ = {1} order by bez", tdb.User.Ulangid, status_typ);
-			FillDS(workDS, sql, new string[] { "tdbv_stasel" });
+			FillDs(workDS, sql, new string[] { "tdbv_stasel" });
 			Arows = workDS.tdbv_stasel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (StatusVsel.tdbv_staselRow Rwork in workDS.tdbv_stasel)
@@ -98,7 +98,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new TitleDS();
 			sql = String.Format("Select * from tdbadmin.bezeichnung where s_id = {0} and bez_id = 0 and typ > 999 order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "bezeichnung" });
+			FillDs(workDS, sql, new string[] { "bezeichnung" });
 			Arows = workDS.bezeichnung.Rows.Count;
 			string[,] result = new string[Arows, 2];
 			foreach (TitleDS.bezeichnungRow Rwork in workDS.bezeichnung)
@@ -128,7 +128,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("status_werte", "STA_ID");
+				id = NewId("status_werte", "STA_ID");
 				rowsaffected = InsBez();
 				// insert
 				sql = String.Format("insert into tdbadmin.status_werte values({0}, '{1}', '{2}', {3}, {4}, {5})", id, code, status, bez_id, kond, status_typ);

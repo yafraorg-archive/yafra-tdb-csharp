@@ -50,7 +50,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CountryV();
 			sql = String.Format("Select * from tdbadmin.tdbv_countryd where land_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_countryd" });
+			FillDs(workDS, sql, new string[] { "tdbv_countryd" });
 			Arows = workDS.tdbv_countryd.Rows.Count;
 			CountryV.tdbv_countrydRow Rwork = workDS.tdbv_countryd[0];
 
@@ -81,7 +81,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CountryVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_countrysel where land_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_countrysel" });
+			FillDs(workDS, sql, new string[] { "tdbv_countrysel" });
 			CountryVsel.tdbv_countryselRow Rwork = workDS.tdbv_countrysel[0];
 			id = Rwork.LAND_ID;
 			return(Rwork.BEZ);
@@ -96,7 +96,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CountryVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_countrysel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_countrysel" });
+			FillDs(workDS, sql, new string[] { "tdbv_countrysel" });
 			Arows = workDS.tdbv_countrysel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (CountryVsel.tdbv_countryselRow Rwork in workDS.tdbv_countrysel)
@@ -130,7 +130,7 @@ namespace tdb
 			{
 
 				// first get a new unique ID for bez and then sai
-				id = NewID("land", "LAND_ID");
+				id = NewId("land", "LAND_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert sai

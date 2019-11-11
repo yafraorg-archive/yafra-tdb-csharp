@@ -41,7 +41,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new LangV();
 			sql = String.Format("Select * from tdbadmin.tdbv_lang where s_id = {0} and bezsprid = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_lang" });
+			FillDs(workDS, sql, new string[] { "tdbv_lang" });
 			Arows = workDS.tdbv_lang.Rows.Count;
 			LangV.tdbv_langRow Rwork = workDS.tdbv_lang[0];
 
@@ -64,7 +64,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new LangVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_langsel where s_id = {0} and bezsprid = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_langsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_langsel" });
 			LangVsel.tdbv_langselRow Rwork = workDS.tdbv_langsel[0];
 			id = Rwork.S_ID;
 			return(Rwork.BEZ);
@@ -79,7 +79,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new LangVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_langsel where bezsprid = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_langsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_langsel" });
 			Arows = workDS.tdbv_langsel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (LangVsel.tdbv_langselRow Rwork in workDS.tdbv_langsel)
@@ -109,7 +109,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("sprachen", "S_ID");
+				id = NewId("sprachen", "S_ID");
 				rowsaffected = InsBez();
 				sql = String.Format("insert into tdbadmin.sprachen values({0}, {1}, {2}, '{3}', {4}, {5})", id, bez_id, dialog, code, output, gui);
 				rowsaffected = DBcmd(sql);

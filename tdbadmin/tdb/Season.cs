@@ -40,7 +40,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new SeasonV();
 			sql = String.Format("Select * from tdbadmin.tdbv_sai where sai_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_sai" });
+			FillDs(workDS, sql, new string[] { "tdbv_sai" });
 			Arows = workDS.tdbv_sai.Rows.Count;
 			SeasonV.tdbv_saiRow Rwork = workDS.tdbv_sai[0];
 
@@ -65,7 +65,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new SeasonVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_saisel where sai_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_saisel" });
+			FillDs(workDS, sql, new string[] { "tdbv_saisel" });
 			SeasonVsel.tdbv_saiselRow Rwork = workDS.tdbv_saisel[0];
 			return(Rwork.BEZ);
 		}
@@ -79,7 +79,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new SeasonVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_saisel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_saisel" });
+			FillDs(workDS, sql, new string[] { "tdbv_saisel" });
 			Arows = workDS.tdbv_saisel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (SeasonVsel.tdbv_saiselRow Rwork in workDS.tdbv_saisel)
@@ -104,8 +104,8 @@ namespace tdb
 			text = Atext;
 
 			// convert to unix timestamp
-			uvon = datetime.ToUnix(Avon);
-			ubis = datetime.ToUnix(Abis);
+			uvon = Datetime.ToUnix(Avon);
+			ubis = Datetime.ToUnix(Abis);
 
 			// Begin Trx
 			BeginTrx();
@@ -113,7 +113,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("saison", "SAI_ID");
+				id = NewId("saison", "SAI_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert sai

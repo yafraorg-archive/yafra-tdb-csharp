@@ -32,7 +32,7 @@ namespace tdbgui
 		{
 			string [] lstitm = new string [3];
 			CustTypVsel workDS = new CustTypVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_cuttsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_cuttsel" });
 			foreach (CustTypVsel.tdbv_cuttselRow Rwork in workDS.tdbv_cuttsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.CUSTTYPE_ID);
@@ -49,7 +49,7 @@ namespace tdbgui
 			CustTypVsel workDS = new CustTypVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_cuttsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_cuttsel" });
 			foreach (CustTypVsel.tdbv_cuttselRow Rwork in workDS.tdbv_cuttsel)
 			{
 				row = workDT.NewRow();

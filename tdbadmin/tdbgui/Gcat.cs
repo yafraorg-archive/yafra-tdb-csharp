@@ -30,7 +30,7 @@ namespace tdbgui
 			string sql;
 			CatV workDS = new CatV();
 			sql = String.Format("Select * from tdbadmin.tdbv_cat where s_id = {0} and h_kat_id < 1 order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_cat" });
+			FillDs(workDS, sql, new string[] { "tdbv_cat" });
 			foreach (CatV.tdbv_catRow Rwork in workDS.tdbv_cat)
 			{
 				TreeNode RootNode = new TreeNode(Rwork.BEZ);
@@ -58,7 +58,7 @@ namespace tdbgui
 			// get the first suiteable title and return it
 			CatV workDS = new CatV();
 			sql = String.Format("Select * from tdbadmin.tdbv_cat where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_cat" });
+			FillDs(workDS, sql, new string[] { "tdbv_cat" });
 			foreach (CatV.tdbv_catRow Rwork in workDS.tdbv_cat)
 			{
 				lstitm[0] = Convert.ToString(Rwork.CAT_ID);
@@ -79,7 +79,7 @@ namespace tdbgui
 			workDT.Columns.Add("desc");
 
 			workDS = new CatVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_catsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_catsel" });
 			foreach (CatVsel.tdbv_catselRow Rwork in workDS.tdbv_catsel)
 			{
 				row = workDT.NewRow();
@@ -107,7 +107,7 @@ namespace tdbgui
 			int rows;
 			CatV workDS = new CatV();
 			sql = String.Format("Select * from tdbadmin.tdbv_cat where s_id = {0} and h_kat_id = {1} order by bez", tdb.User.Ulangid, Aparentid);
-			FillDS(workDS, sql, new string[] { "tdbv_cat" });
+			FillDs(workDS, sql, new string[] { "tdbv_cat" });
 			rows = workDS.tdbv_cat.Rows.Count;
 			if (rows < 1)
 				return;

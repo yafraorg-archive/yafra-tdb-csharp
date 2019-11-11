@@ -37,7 +37,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new PersTypV();
 			sql = String.Format("Select * from tdbadmin.tdbv_perst where perstype_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_perst" });
+			FillDs(workDS, sql, new string[] { "tdbv_perst" });
 			Arows = workDS.tdbv_perst.Rows.Count;
 			PersTypV.tdbv_perstRow Rwork = workDS.tdbv_perst[0];
 
@@ -62,7 +62,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new PersTypVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_perstsel where custtype_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_perstsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_perstsel" });
 			PersTypVsel.tdbv_perstselRow Rwork = workDS.tdbv_perstsel[0];
 			id = Rwork.PERSTYPE_ID;
 			return(Rwork.BEZ);
@@ -77,7 +77,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new PersTypVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_perstsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_perstsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_perstsel" });
 			Arows = workDS.tdbv_perstsel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (PersTypVsel.tdbv_perstselRow Rwork in workDS.tdbv_perstsel)
@@ -107,7 +107,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("reisender_typ", "RKR_ID");
+				id = NewId("reisender_typ", "RKR_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

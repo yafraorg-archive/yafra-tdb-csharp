@@ -30,7 +30,7 @@ namespace tdbgui
 			string sql;
 			StatusVsel workDS = new StatusVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_stasel where s_id = {0} and typ = {1} order by bez", tdb.User.Ulangid, status_typ);
-			FillDS(workDS, sql, new string[] { "tdbv_stasel" });
+			FillDs(workDS, sql, new string[] { "tdbv_stasel" });
 			foreach (StatusVsel.tdbv_staselRow Rwork in workDS.tdbv_stasel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.STA_ID);
@@ -49,7 +49,7 @@ namespace tdbgui
 			workDT.Columns.Add("desc");
 			StatusVsel workDS = new StatusVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_stasel where s_id = {0} and typ = {1} order by bez", tdb.User.Ulangid, status_typ);
-			FillDS(workDS, sql, new string[] { "tdbv_stasel" });
+			FillDs(workDS, sql, new string[] { "tdbv_stasel" });
 			foreach (StatusVsel.tdbv_staselRow Rwork in workDS.tdbv_stasel)
 			{
 				row = workDT.NewRow();
@@ -79,7 +79,7 @@ namespace tdbgui
 			workDT.Columns.Add("desc");
 			TitleDS workDS = new TitleDS();
 			sql = String.Format("Select * from tdbadmin.bezeichnung where s_id = {0} and bez_id = 0 and typ > 999 order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "bezeichnung" });
+			FillDs(workDS, sql, new string[] { "bezeichnung" });
 			foreach (TitleDS.bezeichnungRow Rwork in workDS.bezeichnung)
 			{
 				row = workDT.NewRow();

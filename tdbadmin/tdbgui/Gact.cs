@@ -31,7 +31,7 @@ namespace tdbgui
 			string [] lstitm = new string [2];
 			ActVsel workDS = new ActVsel();
 			Alv.Columns.RemoveAt(2);
-			FillDS(workDS, selectionsql, new string[] { "tdbv_actsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_actsel" });
 			foreach (ActVsel.tdbv_actselRow Rwork in workDS.tdbv_actsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.ACT_ID);
@@ -47,7 +47,7 @@ namespace tdbgui
 			ActVsel workDS = new ActVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_actsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_actsel" });
 			foreach (ActVsel.tdbv_actselRow Rwork in workDS.tdbv_actsel)
 			{
 				row = workDT.NewRow();

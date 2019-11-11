@@ -37,7 +37,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new DlttV();
 			sql = String.Format("Select * from tdbadmin.tdbv_dltt where typ_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_dltt" });
+			FillDs(workDS, sql, new string[] { "tdbv_dltt" });
 			Arows = workDS.tdbv_dltt.Rows.Count;
 			DlttV.tdbv_dlttRow Rwork = workDS.tdbv_dltt[0];
 
@@ -61,7 +61,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new DlttVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_dlttsel where typ_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_dlttsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_dlttsel" });
 			DlttVsel.tdbv_dlttselRow Rwork = workDS.tdbv_dlttsel[0];
 			id = Rwork.TYP_ID;
 			return(Rwork.BEZ);
@@ -76,7 +76,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new DlttVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_dlttsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_dlttsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_dlttsel" });
 			Arows = workDS.tdbv_dlttsel.Rows.Count;
 			string[,] result = new string[Arows, 2];
 			foreach (DlttVsel.tdbv_dlttselRow Rwork in workDS.tdbv_dlttsel)
@@ -100,7 +100,7 @@ namespace tdb
 			{
 				DlttV workDS = new DlttV();
 				sql = String.Format("Select * from tdbadmin.tdbv_dltt where typ_id = {0} and s_id = {1}", Aparentid, tdb.User.Ulangid);
-				FillDS(workDS, sql, new string[] { "tdbv_dltt" });
+				FillDs(workDS, sql, new string[] { "tdbv_dltt" });
 				DlttV.tdbv_dlttRow Rwork = workDS.tdbv_dltt[0];
 				htyp_id = Aparentid;
 				host = Rwork.HOST_TYP;
@@ -112,7 +112,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("traeger_typ", "TYP_ID");
+				id = NewId("traeger_typ", "TYP_ID");
 				if (Ahost == true)
 				{
 					htyp_id = -1;

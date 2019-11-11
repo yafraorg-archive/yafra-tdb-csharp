@@ -30,7 +30,7 @@ namespace tdbgui
 		{
 			string [] lstitm = new string [3];
 			PrgVsel workDS = new PrgVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_prgsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_prgsel" });
 			foreach (PrgVsel.tdbv_prgselRow Rwork in workDS.tdbv_prgsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.PRG_ID);
@@ -47,7 +47,7 @@ namespace tdbgui
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
 			PrgVsel workDS = new PrgVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_prgsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_prgsel" });
 			foreach (PrgVsel.tdbv_prgselRow Rwork in workDS.tdbv_prgsel)
 			{
 				row = workDT.NewRow();

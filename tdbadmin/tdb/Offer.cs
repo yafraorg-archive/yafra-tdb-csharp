@@ -53,7 +53,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			OffV workDS = new OffV();
 			sql = String.Format("Select * from tdbadmin.tdbv_o where o_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_o" });
+			FillDs(workDS, sql, new string[] { "tdbv_o" });
 			Arows = workDS.tdbv_o.Rows.Count;
 			OffV.tdbv_oRow Rwork = workDS.tdbv_o[0];
 
@@ -86,7 +86,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new OffVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_osel where o_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_osel" });
+			FillDs(workDS, sql, new string[] { "tdbv_osel" });
 			OffVsel.tdbv_oselRow Rwork = workDS.tdbv_osel[0];
 			id = Rwork.O_ID;
 			return(Rwork.BEZ);
@@ -101,7 +101,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new OffVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_osel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_osel" });
+			FillDs(workDS, sql, new string[] { "tdbv_osel" });
 			Arows = workDS.tdbv_osel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (OffVsel.tdbv_oselRow Rwork in workDS.tdbv_osel)
@@ -127,7 +127,7 @@ namespace tdb
 			fromcity = Afromcity;
 			tocity = Atocity;
             duration = Aduration;
-            udat = datetime.ToUnix(Aduration);
+            udat = Datetime.ToUnix(Aduration);
             order = Aorder;
             location = Alocation;
             offtype = Aofftype;
@@ -139,7 +139,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("dienst_angebot", "DLA_ID");
+				id = NewId("dienst_angebot", "DLA_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

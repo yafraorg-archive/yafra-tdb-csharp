@@ -32,7 +32,7 @@ namespace tdbgui
 		{
 			string [] lstitm = new string [3];
 			LangVsel workDS = new LangVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_langsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_langsel" });
 			foreach (LangVsel.tdbv_langselRow Rwork in workDS.tdbv_langsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.S_ID);
@@ -49,7 +49,7 @@ namespace tdbgui
 			LangVsel workDS = new LangVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_langsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_langsel" });
 			foreach (LangVsel.tdbv_langselRow Rwork in workDS.tdbv_langsel)
 			{
 				row = workDT.NewRow();

@@ -64,7 +64,7 @@ namespace tdb
 			// get the first suiteable title and return it
             SoV workDS = new SoV();
 			sql = String.Format("Select * from tdbadmin.tdbv_so where so_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_so" });
+			FillDs(workDS, sql, new string[] { "tdbv_so" });
 			Arows = workDS.tdbv_so.Rows.Count;
             SoV.tdbv_soRow Rwork = workDS.tdbv_so[0];
 
@@ -92,7 +92,7 @@ namespace tdb
 			// get the first suiteable title and return it
             workDS = new SoVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_sosel where so_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_sosel" });
+			FillDs(workDS, sql, new string[] { "tdbv_sosel" });
             SoVsel.tdbv_soselRow Rwork = workDS.tdbv_sosel[0];
 			id = Rwork.SO_ID;
 			return(Rwork.BEZ);
@@ -107,7 +107,7 @@ namespace tdb
 			// get the first suiteable title and return it
             workDS = new SoVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_sosel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_sosel" });
+			FillDs(workDS, sql, new string[] { "tdbv_sosel" });
 			Arows = workDS.tdbv_sosel.Rows.Count;
 			string[,] result = new string[Arows, 3];
             foreach (SoVsel.tdbv_soselRow Rwork in workDS.tdbv_sosel)
@@ -129,9 +129,9 @@ namespace tdb
 			text = Atext;
 			code = Acode;
             startdate = Astartdate;
-            udat = datetime.ToUnix(startdate);
+            udat = Datetime.ToUnix(startdate);
             enddate = Aenddate;
-            udat2 = datetime.ToUnix(enddate);
+            udat2 = Datetime.ToUnix(enddate);
             seasonid = Aseasonid;
 
 			// Begin Trx
@@ -140,7 +140,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("dlg_parts", "DL_ID");
+				id = NewId("dlg_parts", "DL_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

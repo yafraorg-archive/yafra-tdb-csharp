@@ -35,7 +35,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new PrgV();
 			sql = String.Format("Select * from tdbadmin.tdbv_prg where prg_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_prg" });
+			FillDs(workDS, sql, new string[] { "tdbv_prg" });
 			Arows = workDS.tdbv_prg.Rows.Count;
 			PrgV.tdbv_prgRow Rwork = workDS.tdbv_prg[0];
 
@@ -59,7 +59,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new PrgVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_prgsel where prg_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_prgsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_prgsel" });
 			PrgVsel.tdbv_prgselRow Rwork = workDS.tdbv_prgsel[0];
 			id = Rwork.PRG_ID;
 			return(Rwork.BEZ);
@@ -74,7 +74,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new PrgVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_prgsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_prgsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_prgsel" });
 			Arows = workDS.tdbv_prgsel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (PrgVsel.tdbv_prgselRow Rwork in workDS.tdbv_prgsel)
@@ -103,7 +103,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("programm", "PRG_ID");
+				id = NewId("programm", "PRG_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert

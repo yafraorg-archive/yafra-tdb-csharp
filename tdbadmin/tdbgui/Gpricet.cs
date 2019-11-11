@@ -33,7 +33,7 @@ namespace tdbgui
 			string [] lstitm = new string [2];
 			Alv.Columns.RemoveAt(2);
 			PrtVsel workDS = new PrtVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_prtsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_prtsel" });
 			foreach (PrtVsel.tdbv_prtselRow Rwork in workDS.tdbv_prtsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.PRT_ID);
@@ -49,7 +49,7 @@ namespace tdbgui
 			PrtVsel workDS = new PrtVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_prtsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_prtsel" });
 			foreach (PrtVsel.tdbv_prtselRow Rwork in workDS.tdbv_prtsel)
 			{
 				row = workDT.NewRow();

@@ -30,7 +30,7 @@ namespace tdbgui
 		{
 			string [] lstitm = new string [3];
 			CurVsel workDS = new CurVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_cursel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_cursel" });
 			foreach (CurVsel.tdbv_curselRow Rwork in workDS.tdbv_cursel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.WHR_ID);
@@ -47,7 +47,7 @@ namespace tdbgui
 			CurVsel workDS = new CurVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_cursel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_cursel" });
 			foreach (CurVsel.tdbv_curselRow Rwork in workDS.tdbv_cursel)
 			{
 				row = workDT.NewRow();

@@ -54,7 +54,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new DltV();
 			sql = String.Format("Select * from tdbadmin.tdbv_dlt where dlt_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_dlt" });
+			FillDs(workDS, sql, new string[] { "tdbv_dlt" });
 			Arows = workDS.tdbv_dlt.Rows.Count;
 			DltV.tdbv_dltRow Rwork = workDS.tdbv_dlt[0];
 
@@ -86,7 +86,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new DltVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_dltsel where dlt_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_dltsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_dltsel" });
 			DltVsel.tdbv_dltselRow Rwork = workDS.tdbv_dltsel[0];
 			id = Rwork.DLT_ID;
 			return(Rwork.BEZ);
@@ -101,7 +101,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new DltVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_dltsel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_dltsel" });
+			FillDs(workDS, sql, new string[] { "tdbv_dltsel" });
 			Arows = workDS.tdbv_dltsel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (DltVsel.tdbv_dltselRow Rwork in workDS.tdbv_dltsel)
@@ -128,7 +128,7 @@ namespace tdb
 			{
 				DltV workDS = new DltV();
 				sql = String.Format("Select * from tdbadmin.tdbv_dlt where dlt_id = {0} and s_id = {1}", Aparentid, tdb.User.Ulangid);
-				FillDS(workDS, sql, new string[] { "tdbv_dlt" });
+				FillDs(workDS, sql, new string[] { "tdbv_dlt" });
 				DltV.tdbv_dltRow Rwork = workDS.tdbv_dlt[0];
 				parentid = Aparentid;
 				host = Rwork.HOSTID;
@@ -145,7 +145,7 @@ namespace tdb
 			if (Ainsert)
 			{
 				// first get a new unique ID for bez and then sai
-				id = NewID("dienst_traeger", "DLT_ID");
+				id = NewId("dienst_traeger", "DLT_ID");
 				if (Ahost == true)
 				{
 					parentid = -1;

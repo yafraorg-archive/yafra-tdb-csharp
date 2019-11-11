@@ -46,7 +46,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CityV();
 			sql = String.Format("Select * from tdbadmin.tdbv_city where ort_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_city" });
+			FillDs(workDS, sql, new string[] { "tdbv_city" });
 			Arows = workDS.tdbv_city.Rows.Count;
 			CityV.tdbv_cityRow Rwork = workDS.tdbv_city[0];
 
@@ -75,7 +75,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CityVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_citysel where ort_id = {0} and s_id = {1}", Aid, tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_citysel" });
+			FillDs(workDS, sql, new string[] { "tdbv_citysel" });
 			CityVsel.tdbv_cityselRow Rwork = workDS.tdbv_citysel[0];
 			id = Rwork.ORT_ID;
 			return(Rwork.BEZ);
@@ -90,7 +90,7 @@ namespace tdb
 			// get the first suiteable title and return it
 			workDS = new CityVsel();
 			sql = String.Format("Select * from tdbadmin.tdbv_citysel where s_id = {0} order by bez", tdb.User.Ulangid);
-			FillDS(workDS, sql, new string[] { "tdbv_citysel" });
+			FillDs(workDS, sql, new string[] { "tdbv_citysel" });
 			Arows = workDS.tdbv_citysel.Rows.Count;
 			string[,] result = new string[Arows, 3];
 			foreach (CityVsel.tdbv_cityselRow Rwork in workDS.tdbv_citysel)
@@ -124,7 +124,7 @@ namespace tdb
 			{
 
 				// first get a new unique ID for bez and then sai
-				id = NewID("ort", "ORT_ID");
+				id = NewId("ort", "ORT_ID");
 				rowsaffected = InsBez();
 				rowsaffected = InsText();
 				// insert sai

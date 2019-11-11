@@ -32,7 +32,7 @@ namespace tdbgui
 		{
 			string [] lstitm = new string [3];
 			GrpTypVsel workDS = new GrpTypVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_grptsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_grptsel" });
 			foreach (GrpTypVsel.tdbv_grptselRow Rwork in workDS.tdbv_grptsel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.GRPTYPE_ID);
@@ -49,7 +49,7 @@ namespace tdbgui
 			GrpTypVsel workDS = new GrpTypVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_grptsel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_grptsel" });
 			foreach (GrpTypVsel.tdbv_grptselRow Rwork in workDS.tdbv_grptsel)
 			{
 				row = workDT.NewRow();

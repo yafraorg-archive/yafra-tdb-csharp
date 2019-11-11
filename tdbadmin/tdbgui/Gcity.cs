@@ -31,7 +31,7 @@ namespace tdbgui
 		{
 			string [] lstitm = new string [3];
 			CityVsel workDS = new CityVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_citysel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_citysel" });
 			foreach (CityVsel.tdbv_cityselRow Rwork in workDS.tdbv_citysel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.ORT_ID);
@@ -48,7 +48,7 @@ namespace tdbgui
 			CityVsel workDS = new CityVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_citysel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_citysel" });
 			foreach (CityVsel.tdbv_cityselRow Rwork in workDS.tdbv_citysel)
 			{
 				row = workDT.NewRow();

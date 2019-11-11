@@ -60,7 +60,7 @@ namespace tdb
 			TexteDS textDS;
 			textDS = new TexteDS();
 			sql = String.Format("Select * from tdbadmin.texte where textid = {0} and s_id = {1} and textnr = 1 and typ = {2}", text_id, tdb.User.Ulangid, typ);
-			FillDS(textDS, sql, new string[] { "texte" });
+			FillDs(textDS, sql, new string[] { "texte" });
 			TexteDS.texteRow Rwork = textDS.texte[0];
 			text = Rwork.TEXT;
 			return(textDS.texte.Rows.Count);
@@ -71,7 +71,7 @@ namespace tdb
 			int rows = 0;
 			if (!text.Equals(""))
 			{
-				text_id = NewID("texte", "TEXTID");
+				text_id = NewId("texte", "TEXTID");
 				sql = String.Format("insert into tdbadmin.texte values({0}, {1}, 1, '{2}', {3})", text_id, User.Ulangid, text, typ);
 				rows = DBcmd(sql);
 			}
@@ -83,7 +83,7 @@ namespace tdb
 			int rows = 0;
 			if (!text.Equals("") && text_id == -1)
 			{
-				text_id = NewID("texte", "TEXTID");
+				text_id = NewId("texte", "TEXTID");
 				sql = String.Format("insert into tdbadmin.texte values({0}, {1}, 1, '{2}', {3})", text_id, User.Ulangid, text, typ);
 				rows = DBcmd(sql);
 			}
@@ -97,7 +97,7 @@ namespace tdb
 		public virtual int InsBez()
 		{
 			string sql;
-			bez_id = NewID("bezeichnung", "BEZ_ID");
+			bez_id = NewId("bezeichnung", "BEZ_ID");
 			sql = String.Format("insert into tdbadmin.bezeichnung values({0}, {1}, '{2}', {3})", bez_id, User.Ulangid, bez, typ);
 			return(DBcmd(sql));
 		}

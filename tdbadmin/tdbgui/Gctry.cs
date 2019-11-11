@@ -32,7 +32,7 @@ namespace tdbgui
 		{
 			string [] lstitm = new string [3];
 			CountryVsel workDS = new CountryVsel();
-			FillDS(workDS, selectionsql, new string[] { "tdbv_countrysel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_countrysel" });
 			foreach (CountryVsel.tdbv_countryselRow Rwork in workDS.tdbv_countrysel)
 			{
 				lstitm[0] = Convert.ToString(Rwork.LAND_ID);
@@ -49,7 +49,7 @@ namespace tdbgui
 			CountryVsel workDS = new CountryVsel();
 			workDT.Columns.Add("id", typeof(int));
 			workDT.Columns.Add("desc");
-			FillDS(workDS, selectionsql, new string[] { "tdbv_countrysel" });
+			FillDs(workDS, selectionsql, new string[] { "tdbv_countrysel" });
 			foreach (CountryVsel.tdbv_countryselRow Rwork in workDS.tdbv_countrysel)
 			{
 				row = workDT.NewRow();
